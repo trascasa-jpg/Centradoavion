@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora centrado avión</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 30px;
+            background-color: #f4f7f6;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Centra todo el contenido */
+        }
+
+        .container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 0px; /* Espacio antes de la imagen */
+        }
+
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 0.85rem;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 70px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+
+        }
+
+        input[readonly] {
+            background-color: #e8f4fd;
+            border-color: #3498db;
+        }
+
+        /* Estilo para la imagen */
+        .image-container {
+            width: 100%;
+            max-width: 1000px; /* Tamaño máximo sugerido */
+            text-align: center;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+
+        .divider {
+            width: 2px;
+            background-color: #ccc;
+            margin: 0 10px;
+        }
+
+        select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+            margin-top: 10px;
+	    text-align: center;
+        }
+        .container2 {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h2>Calculadora de centrado de Avión (peso en Kg.)</h2>
+
+    <div class="container">
+        <!-- Grupo 1 -->
+        <div class="field-group"><label>PESO DER</label><input type="number" min="0" id="box1" readonly></div>
+
+        <div class="divider"></div>
+
+        <div class="field-group"><label>exterior</label><input type="number" min="0" class="val" id="box2" value="0"></div>
+        <div class="field-group"><label>motor</label><input type="number" min="0" class="val" id="box3" value="550"></div>
+        <div class="field-group"><label>interior</label><input type="number" min="0" class="val" id="box4" value="0"></div>
+
+        <div class="divider"></div>
+
+        <!-- Grupo 2 -->
+        <div class="field-group"><label>interior</label><input type="number" min="0" class="val" id="box5" value="0"></div>
+        <div class="field-group"><label>motor</label><input type="number" min="0" class="val" id="box6" value="550"></div>
+        <div class="field-group"><label>exterior</label><input type="number" min="0" class="val" id="box7" value="0"></div>
+
+        <div class="divider"></div>
+
+        <div class="field-group"><label>PESO IZQ</label><input type="number" min="0" id="box8" readonly></div>
+    </div>
+
+    <!-- Contenedor de la Imagen -->
+    <div class="image-container">
+        <img src="avion.png" alt="Esquema de avión">
+    </div>
+    <h4>El motor completo pesa 550 Kg. El motor sin hélice pesa 430 Kg.</h4>
+    <div class="container2">
+        <label for="tipo-conversion">Selecciona una conversión:</label>
+        <select id="tipo-conversion">
+            <option value="libras-a-kilogramos">Libras a Kilogramos</option>
+            <option value="kilogramos-a-libras">Kilogramos a Libras</option>
+
+        </select>
+
+        <div class="input-container">
+            <label for="valor">Introduce el valor:</label>
+            <input type="number" id="valor" placeholder="">
+
+        </div>
+
+        <button onclick="realizarConversion()">Convertir</button>
+
+        <p id="resultado"></p>
+
+        <H6 align="right"  style="color:green;margin-bottom: 0px;" >SINCA</H6>
+    </div>
+
+
+    <div class="image-container">
+     <img src="indicador magnetico ppal.jpg" alt="Esquema de avión">
+     <img src="indicador magnetico aux.jpg" alt="Esquema de avión">
+    </div>
+
+    <script>
+        const inputs = document.querySelectorAll('.val');
+        function calcular() {
+            const v = id => parseFloat(document.getElementById(id).value) || 0;
+            document.getElementById('box1').value = Math.trunc(((v('box5')*2.1 + v('box6')*3.5 + v('box7')*6.2 ) - (v('box2')*6.2 + v('box3')*3.5 + v('box4')*2.1 ))/12)< 0 ? "" :Math.trunc(((v('box5')*2.1 + v('box6')*3.5 + v('box7')*6.2 ) - (v('box2')*6.2 + v('box3')*3.5 + v('box4')*2.1 ))/12);
+            document.getElementById('box8').value = Math.trunc(((v('box2')*6.2 + v('box3')*3.5 + v('box4')*2.1 ) - (v('box5')*2.1 + v('box6')*3.5 + v('box7')*6.2 ))/12)< 0 ? "" :Math.trunc(((v('box2')*6.2 + v('box3')*3.5 + v('box4')*2.1 ) - (v('box5')*2.1 + v('box6')*3.5 + v('box7')*6.2 ))/12);
+        }
+        inputs.forEach(i => i.addEventListener('input', calcular));
+        calcular();
+    </script>
+    <script>
+        function realizarConversion() {
+            let tipoConversion = document.getElementById("tipo-conversion").value;
+            let valor = parseFloat(document.getElementById("valor").value);
+            let resultado = 0;
+            let unidadResultado = "";
+
+            if (isNaN(valor)) {
+                document.getElementById("resultado").innerText = "Por favor, ingresa un valor válido.";
+                return;
+            }
+
+            switch (tipoConversion) {
+                
+                case "kilogramos-a-libras":
+                    resultado = valor * 2.20462;
+                    unidadResultado = "libras";
+                    break;
+                case "libras-a-kilogramos":
+                    resultado = valor / 2.20462;
+                    unidadResultado = "kilogramos";
+                    break;
+		    
+                default:
+                    document.getElementById("resultado").innerText = "Error al seleccionar una conversión.";
+                    return;
+            }
+
+            document.getElementById("resultado").innerText =`${resultado.toFixed(0)} ${unidadResultado}.`;
+        }
+    </script>
+
+
+</body>
+</html>
