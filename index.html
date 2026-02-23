@@ -18,7 +18,7 @@
             display: flex;
             gap: 15px;
             justify-content: center;
-            flex-wrap: wrap;
+            /* flex-wrap: wrap; */
             margin-bottom: 0px; /* Espacio antes de la imagen */
         }
 
@@ -37,7 +37,7 @@
         input {
             width: 70px;
             padding: 8px;
-            border: 2px solid #ddd;
+            border: 2px solid #F4A460;
             border-radius: 4px;
             text-align: center;
 
@@ -68,19 +68,50 @@
             margin: 0 10px;
         }
 
-        select, button {
+        button {
             width: 100%;
             padding: 10px;
             margin-bottom: 10px;
             margin-top: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid #696969;
             border-radius: 4px;
         }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border: 1px solid #696969;
+            border-radius: 4px;
+        }
+
         button {
             background-color: #007bff;
             color: white;
             cursor: pointer;
         }
+
+        button2 {
+            width: 10%;
+            padding: 10px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+
+        }
+        button2 {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button2:hover {
+            background-color: #0056b3;
+        }
+
 
         button:hover {
             background-color: #0056b3;
@@ -109,7 +140,7 @@
 
     <div class="container">
         <!-- Grupo 1 -->
-        <div class="field-group"><label>PESO DER</label><input type="number" min="0" id="box1" readonly></div>
+        <div class="field-group"><label>PESO DER</label><input type="number" style="font-weight: bold;" min="0" id="box1" readonly></div>
 
         <div class="divider"></div>
 
@@ -126,13 +157,15 @@
 
         <div class="divider"></div>
 
-        <div class="field-group"><label>PESO IZQ</label><input type="number" min="0" id="box8" readonly></div>
+        <div class="field-group"><label>PESO IZQ</label><input type="number" style="font-weight: bold;" min="0" id="box8" readonly></div>
     </div>
 
     <!-- Contenedor de la Imagen -->
     <div class="image-container">
         <img src="avion.png" alt="Esquema de avión">
     </div>
+    <button2 onclick="limpiar()">limpiar</button2>
+
     <h4>El motor completo pesa 550 Kg. El motor sin hélice pesa 430 Kg.</h4>
     <div class="container2">
         <label for="tipo-conversion">Selecciona una conversión:</label>
@@ -152,7 +185,7 @@
 
         <p id="resultado"></p>
 
-        <H6 align="right"  style="color:green;margin-bottom: 0px;" >SINCA</H6>
+        <H6 align="right"  style="color:green;margin-bottom: 0px;" >By Petrón</H6>
     </div>
 
 
@@ -160,6 +193,7 @@
      <img src="indicador magnetico ppal.jpg" alt="Esquema de avión">
      <img src="indicador magnetico aux.jpg" alt="Esquema de avión">
     </div>
+        <H6 align="right"  style="color:green;margin-bottom: 0px;" >By Petrón</H6>
 
     <script>
         const inputs = document.querySelectorAll('.val');
@@ -200,6 +234,17 @@
             }
 
             document.getElementById("resultado").innerText =`${resultado.toFixed(0)} ${unidadResultado}.`;
+        }
+    </script>
+    <script>
+	function limpiar() {
+        document.getElementById('box2').value = '0';
+        document.getElementById('box3').value = '550';
+        document.getElementById('box4').value = '0';
+        document.getElementById('box5').value = '0';
+        document.getElementById('box6').value = '550';
+        document.getElementById('box7').value = '0';
+	calcular();
         }
     </script>
 
